@@ -1,0 +1,60 @@
+{% extends 'almacen/base.html' %}
+{% block content %}
+
+</div>
+        <!-- /.container-fluid -->
+        </nav>
+<section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    
+                    
+                    {% if f %}
+                    <h2 class="section-heading">escoje el dia y la hora</h2>
+                    <hr class="light">
+					<form method="POST" class="form-inline">
+					<div class="form-group">
+						{% csrf_token %} 
+						{{form.as_p}}
+					</div>
+					
+						<button type="submit" class="btn btn-primary btn-xl page-scroll" >ENVIAR</button>
+					</form>
+
+
+
+					<hr class="light">
+					<h2> o dale en ahora para saber en este momento</h2>
+					 <form  method="POST">
+    					{% csrf_token %}
+   					 <input type="submit" class="btn btn-primary btn-xl page-scroll" value="AHORA" name="AHORA"/>
+					</form>
+					{% else %}
+					{% if n %}
+					<h1 class="section-heading">no hay laboratorios libres en este momento</h1>
+					<h3>sin embargo hay estas clases</h3>
+					<hr class="light">
+					{% for lab in labs %}
+					<h2>laboratorio nº {{lab.n}}<br> {{lab.clases}}</h2>
+					{% endfor %}
+					<a href="{% url 'apli_min' %}" class="btn btn-primary btn-xl page-scroll">volver</a> 
+
+					{% else %}
+					
+
+					<h1 class="section-heading">el laboratorio libre es:</h1>
+					<hr class="light">
+					<h2>laboratorio nº {{lab.n}}</h2>
+					<a href="{% url 'apli_min' %}" class="btn btn-primary btn-xl page-scroll">volver</a> 
+					{% endif %}
+					{% endif %}
+                    <!-- <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a> -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}
