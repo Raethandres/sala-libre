@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-# from .models import Laboratorio
+from models import Laboratorio
 
 URL_BASE = "http://labcomp.unet.edu.ve/horario.php?id="
 MAX_PAGES = 3
